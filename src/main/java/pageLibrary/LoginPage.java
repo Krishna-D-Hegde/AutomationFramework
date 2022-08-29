@@ -1,5 +1,26 @@
 package pageLibrary;
 
-public class LoginPage {
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import common.Base;
+
+/**
+ * This class consists of WebElements and Methods related to Login Page
+ * @author krishna.d.hegde
+ *
+ */
+public class LoginPage extends Base{
+	WebDriver driver;
+
+	public LoginPage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	public void test() throws InterruptedException {
+		waitFor(2000);
+	}
 
 }
