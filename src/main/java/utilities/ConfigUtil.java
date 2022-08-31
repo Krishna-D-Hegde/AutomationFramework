@@ -8,7 +8,7 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import common.Base;
+import commonMain.Base;
 
 /**
  * This class is used to define Run Time Configurations
@@ -29,7 +29,7 @@ public class ConfigUtil {
 	
 	public static final Logger LOG = LogManager.getLogger(ConfigUtil.class);
 
-	public static Properties setProperties() {
+	public Properties setProperties() {
 		String fileName = "";
 		FileInputStream fis = null;
 		switch (runEnv) {
@@ -39,7 +39,7 @@ public class ConfigUtil {
 		default:
 			fileName = StringConstants.CONFIG_TEST;
 		}
-		String path = StringConstants.USER_DIR + "\\properties\\"+fileName+".properties";
+		String path = StringConstants.USER_DIR + "\\resources\\properties\\"+fileName+".properties";
 		try {
 			fis = new FileInputStream(path);
 		} catch (Exception e) {

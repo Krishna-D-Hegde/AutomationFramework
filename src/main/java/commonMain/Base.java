@@ -1,4 +1,4 @@
-package common;
+package commonMain;
 
 import java.time.Duration;
 
@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class Base {
 	WebDriver driver;
-	public static int explicitWaitInSeconds = 10;
+	public int explicitWaitInSeconds = 10;
 	public static final Logger LOG = LogManager.getLogger(Base.class);
 
 

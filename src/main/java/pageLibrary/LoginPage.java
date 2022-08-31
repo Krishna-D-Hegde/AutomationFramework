@@ -3,7 +3,7 @@ package pageLibrary;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import common.Base;
+import commonMain.Base;
 
 /**
  * This class consists of WebElements and Methods related to Login Page
@@ -19,8 +19,9 @@ public class LoginPage extends Base{
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void test() throws InterruptedException {
-		waitFor(2000);
-	}
+	public void login(String url) {
+		System.out.println(url);
 
+	}
+	
 }
