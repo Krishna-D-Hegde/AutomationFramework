@@ -21,12 +21,9 @@ import utilities.StringConstants;
  */
 public class LoginPageTest extends TestBase {
 
-	static Logger demoLogger = LogManager.getLogger(LoginPageTest.class.getName());
-
 	@Test
 	public void testing() throws Exception {
 		System.out.println("success1");
-		
 		setResultDescription("Passed successfully!");
 	}
 
@@ -34,16 +31,6 @@ public class LoginPageTest extends TestBase {
 	public void testingNew() throws Exception {
 		int i = 9 / 0;
 		System.out.println("success2");
-
 	}
-
-	public static void main(String[] args) throws Exception {
-		demoLogger.info("Hi");
-		demoLogger.debug("Hi");
-		demoLogger.fatal("Hi");
-		demoLogger.error("Hi");
-		demoLogger.warn("Hi");
-		System.out.println("Success");
-}
 
 }

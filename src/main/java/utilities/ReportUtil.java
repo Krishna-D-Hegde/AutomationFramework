@@ -19,7 +19,7 @@ public class ReportUtil {
 		reporter.config().setDocumentTitle(StringConstants.REPORT_TITLE);
 	}
 
-	public synchronized static ExtentReports generateExtentReport() {
+	public static ExtentReports generateExtentReport() {
 		configureExtentReport();
 		ExtentReports extent = new ExtentReports();
 		extent.attachReporter(reporter);

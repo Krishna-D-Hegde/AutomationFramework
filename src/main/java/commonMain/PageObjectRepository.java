@@ -16,6 +16,7 @@ import utilities.ScreenshotUtil;
  */
 public class PageObjectRepository {
 	private WebDriver driver;
+	
 	private LoginPage objLoginPage;
 	private ScreenshotUtil objScreenshotUtil;
 

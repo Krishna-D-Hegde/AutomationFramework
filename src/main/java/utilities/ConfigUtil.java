@@ -33,6 +33,10 @@ public class ConfigUtil {
 
 	public static final Logger LOG = LogManager.getLogger(ConfigUtil.class.getName());
 
+	/**
+	 * Loads properties file base on Run Environment
+	 * @return
+	 */
 	public Properties setProperties() {
 		String fileName = "";
 		FileInputStream fis = null;
