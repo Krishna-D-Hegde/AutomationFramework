@@ -1,4 +1,4 @@
-package common;
+package commonTest;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -22,25 +22,33 @@ import commonMain.PageObjectRepository;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.*;
 
+/**
+ * This class consists of Test Listener methods, TestNG methods and methods to
+ * generate PageObjectRepository and driver object.
+ * 
+ * @author krishna.d.hegde
+ *
+ */
 public class TestBase implements ITestListener {
 	protected WebDriver driver;
 	protected Properties properties;
 	protected PageObjectRepository POR;
-	protected String methodName;
 	private static ExtentReports extent;
 	private static ExtentTest test;
-	private static String screenshotPath;
-	private static final Logger LOG = LogManager.getLogger(TestBase.class);
+	private String methodName;
+	private String screenshotPath;
+	private static String resultDescription;
+	private static final Logger LOG = LogManager.getLogger(TestBase.class.getName());
 
 	@Override // Execution Order - 1
 	public void onStart(ITestContext context) {
 		extent = ReportUtil.generateExtentReport();
 	}
 
-	@BeforeMethod // Execution Order - 2
+	@BeforeMethod(alwaysRun = true) // Execution Order - 2
 	public void beforeMethod() {
 		createDriver();
-		objPOR();
+		createPageObjectRepository();
 	}
 
 	@Override // Execution Order - 3
@@ -51,7 +59,7 @@ public class TestBase implements ITestListener {
 
 	@Override // Execution Order - 4
 	public void onTestSuccess(ITestResult result) {
-		test.pass("Passed");
+		test.pass(resultDescription);
 	}
 
 	@Override // Execution Order - 4
@@ -61,23 +69,28 @@ public class TestBase implements ITestListener {
 
 	@Override // Execution Order - 4
 	public void onTestSkipped(ITestResult result) {
-
+		if (result.wasRetried()) {
+			extent.removeTest(test);
+		}
 	}
 
-	@AfterMethod // Execution Order - 5
+	@AfterMethod(alwaysRun = true) // Execution Order - 5
 	public void afterMethod() {
 		try {
 			screenshotPath = POR.objScreenshotUtil().takeScreenshot(methodName);
 			test.addScreenCaptureFromPath(screenshotPath, methodName);
 		} catch (IOException e) {
 			System.out.println(e);
+			LOG.error("Screenshot not found");
+		} catch (Exception e1) {
+//			System.out.println(e1);
+//			LOG.error(e1);
 		}
 		driver.close();
 	}
 
 	@Override // Execution Order - 6
 	public void onFinish(ITestContext context) {
-		System.out.println("From finish");
 		extent.flush();
 	}
 
@@ -116,9 +129,12 @@ public class TestBase implements ITestListener {
 		return driver;
 	}
 
-	public void objPOR() {
+	public void createPageObjectRepository() {
 		POR = new PageObjectRepository(driver);
-		System.out.println(POR);
+	}
+
+	protected void setResultDescription(String description) {
+		this.resultDescription = description;
 	}
 
 }

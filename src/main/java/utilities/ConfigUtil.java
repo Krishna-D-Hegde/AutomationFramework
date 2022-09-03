@@ -8,10 +8,11 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import commonMain.Base;
+import commonMain.POMBase;
 
 /**
  * This class is used to define Run Time Configurations
+ * 
  * @author krishna.d.hegde
  *
  */
@@ -19,15 +20,18 @@ public class ConfigUtil {
 	public enum Browser {
 		CHROME, FIREFOX, OPERA, INTERNET_EXPLORER, EDGE, SAFARI;
 	}
+
 	public enum RunEnvironment {
 		TEST;
 	}
+
 	public static Browser browserName = Browser.CHROME;
 	public static RunEnvironment runEnv = RunEnvironment.TEST;
-	
+	public static int retryCount = 0;
+
 	/*----------------------------------------------------*/
-	
-	public static final Logger LOG = LogManager.getLogger(ConfigUtil.class);
+
+	public static final Logger LOG = LogManager.getLogger(ConfigUtil.class.getName());
 
 	public Properties setProperties() {
 		String fileName = "";
@@ -39,18 +43,18 @@ public class ConfigUtil {
 		default:
 			fileName = StringConstants.CONFIG_TEST;
 		}
-		String path = StringConstants.USER_DIR + "\\resources\\properties\\"+fileName+".properties";
+		String path = StringConstants.USER_DIR + "\\resources\\properties\\" + fileName + ".properties";
 		try {
 			fis = new FileInputStream(path);
 		} catch (Exception e) {
-			LOG.error(e+": Could not Read File");
+			LOG.error(e + ": Could not Read File");
 		}
 		Properties prop = new Properties();
 		try {
 			prop.load(fis);
-			LOG.info(fileName+" successfully loaded.");
+			LOG.info(fileName + " successfully loaded.");
 		} catch (Exception e) {
-			LOG.error(e+": Could not Load File");
+			LOG.error(e + ": Could not Load File");
 
 		}
 		return prop;

@@ -10,19 +10,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * This class consists of reusable methods which can be used only by Page
- * Library classes
+ * This class consists of reusable methods which can be used only by classes
+ * inside 'pageLibrary' package.
  * 
  * @author krishna.d.hegde
  *
  */
-public class Base {
-	WebDriver driver;
+public class POMBase {
 	public int explicitWaitInSeconds = 10;
-	public static final Logger LOG = LogManager.getLogger(Base.class);
-
-
-	public Base(WebDriver driver) {
+	public static final Logger LOG = LogManager.getLogger(POMBase.class.getName());
+	private WebDriver driver;
+	public POMBase(WebDriver driver) {
 		this.driver = driver;
 	}
 

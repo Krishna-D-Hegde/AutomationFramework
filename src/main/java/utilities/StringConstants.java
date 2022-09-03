@@ -2,6 +2,7 @@ package utilities;
 
 /**
  * This class consists of constant String values
+ * 
  * @author krishna.d.hegde
  *
  */
@@ -14,9 +15,4 @@ public class StringConstants {
 	public static final String REPORT_NAME = "Krishna D Hegde";
 	public static final String REPORT_TITLE = "Test Automation Results";
 
-	
-	
-
-	
-	
 }

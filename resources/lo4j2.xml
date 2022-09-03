@@ -1,1 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="WARN">
+
+	<Properties>
+		<Property name="projectLocation">.</Property>
+		<Property name="logFolderLocation">/logs/</Property>
+		<Property name="fileName">prints.log</Property>
+		<Property name="logPattern">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+		<Property name="newfileName">prints-%d{HH:mm:ss.SSS}.log</Property>
+	</Properties>
+	
+	<Appenders>
+		<Console name="Console">
+			<PatternLayout pattern="${logPattern}" />
+		</Console>
+		<RollingFile name="File" fileName="${projectLocation}${logFolderLocation}${fileName}" 
+					 filePattern="${projectLocation}${logFolderLocation}${newFileName}">
+			<PatternLayout pattern="${logPattern}" />
+			<SizeBasedTriggeringPolicy size="50000" />
+		</RollingFile>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+	
+</Configuration>

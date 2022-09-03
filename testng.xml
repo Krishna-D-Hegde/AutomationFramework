@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<listeners>
-		<listener class-name="common.TestBase" />
+		<listener class-name="commonTest.TestBase" />
 	</listeners>
 	<test thread-count="5" name="Test">
 		<groups>
@@ -11,6 +11,9 @@
 		</groups>
 		<classes>
 			<class name="epic1.LoginPageTest">
+			<methods>
+				<include name = "testing" />
+			</methods>
 			</class>
 		</classes>
 	</test> <!-- Test -->
